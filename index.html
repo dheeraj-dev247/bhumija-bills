@@ -252,7 +252,7 @@ button{cursor:pointer}
       <button onclick="setPayment('UPI',this)">UPI</button>
       <button onclick="setPayment('Card',this)">Card</button>
     </div>
-    <button class="checkout" id="checkout" onclick="completeSale()" disabled>Generate Bill & Print</button>
+    <button class="checkout" id="checkout" onclick="completeSale()" disabled>Save &amp; New Bill</button>
   </div>
 </aside>
 </div>
@@ -384,7 +384,7 @@ button{cursor:pointer}
 
 <script>
 const LS_PRODUCTS='bhumija_products_v2', LS_SALES='bhumija_sales_v1';
-const flourQty=[0.5,1,2,3,4,5,6,7,8,9,10,12,15,20], masalaQty=[50,100,150,200,250,300,500], batterQty=[0.5,1,2,3,5];
+const flourQty=[0.25,0.5,0.75,1,2,3,4,5,6,7,8,9,10,12,15,20], masalaQty=[50,100,150,200,250,300,500], batterQty=[0.5,1,2,3,5];
 const defaultProducts=[
 {name:'Sharbati Wheat Atta',cat:'Atta & Flour',price:65,unit:'kg'},
 {name:'Multigrain Atta',cat:'Atta & Flour',price:100,unit:'kg'},
@@ -502,7 +502,7 @@ function completeSale(){
  if(!cart.length)return;
  const now=new Date(), subtotal=cart.reduce((s,c)=>s+lineAmount(products.find(p=>p.id===c.id),c.qty),0);
  const sale={id:'BC-'+now.getTime().toString().slice(-8),date:today(),time:istTime(),customer:document.getElementById('customerName').value||'Walk-in',phone:document.getElementById('customerPhone').value,items:cart.map(c=>{const p=products.find(x=>x.id===c.id);return{name:p.name,cat:p.cat,qty:c.qty,unit:p.unit,icon:p.icon,amount:lineAmount(p,c.qty)}}),payment,total:subtotal};
- sales.unshift(sale);save();buildReceipt(sale);renderCart();cart=[];document.getElementById('customerName').value='';document.getElementById('customerPhone').value='';document.getElementById('customerNote').value='';renderCart();setTimeout(()=>window.print(),100);
+ sales.unshift(sale);save();cart=[];document.getElementById('customerName').value='';document.getElementById('customerPhone').value='';document.getElementById('customerNote').value='';renderCart();renderBills();renderReport();
 }
 function buildReceipt(s){
  document.getElementById('receipt').innerHTML=`<h1>BHUMIJA CHAKKI</h1><p>Freshly Milled, Freshly Delivered.</p><p>Bill: ${esc(s.id)}<br>${esc(s.date)} ${esc(s.time)}</p><hr>${s.items.map(i=>`<div class="rline"><span>${esc(i.name)}<br>${qtyText(i,i.qty)} × ${money(i.unit==='100g'?i.amount/(i.qty/100):i.amount/i.qty)}</span><span>${money(i.amount)}</span></div>`).join('')}<hr><div class="rline r-total"><span>TOTAL</span><span>${money(s.total)}</span></div><div class="rline"><span>Payment</span><span>${esc(s.payment)}</span></div><p>Thank you! Visit again.</p>`;
