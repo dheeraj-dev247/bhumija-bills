@@ -1,330 +1,66 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#2f5d3a">
-<link rel="icon" href="data:image/webp;base64,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">
-<title>Bhumija Chakki – Order Online</title>
-<style>
-:root{--g:#2f5d3a;--g2:#e6efe3;--gd:#244a2d;--sa:#d9822b;--bg:#fbf6ea;--t:#1f2a1c;--m:#6f7568;--c:#fff;--b:#e8e1d0;--sh:0 2px 10px rgba(47,93,58,.08)}
-@media(prefers-color-scheme:dark){:root{--g:#6fbf82;--g2:#1f2e24;--gd:#4f9f64;--sa:#e89a4a;--bg:#14171a;--t:#eee;--m:#9a9a9a;--c:#1d2125;--b:#2f353b;--sh:none}}
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--t);padding-bottom:calc(96px + env(safe-area-inset-bottom,0px));overflow-x:hidden}
-header{background:linear-gradient(160deg,#2f5d3a,#1f4429);color:#fff;text-align:center;padding:calc(8px + env(safe-area-inset-top,0px)) 16px 12px;border-radius:0 0 20px 20px}
-.logo{width:clamp(60px,17vw,76px);height:auto;aspect-ratio:1;border-radius:50%;background:#fff;display:block;margin:0 auto;box-shadow:0 0 0 3px rgba(255,255,255,.25),0 3px 10px rgba(0,0,0,.3)}
-header p{margin:6px 0 0;font-size:13px;letter-spacing:.3px;opacity:.95}
-.trust{display:none}
-.trust span{background:rgba(255,255,255,.14);border-radius:99px;padding:4px 11px;font-size:12px;font-weight:600}
-main{max-width:640px;margin:auto;padding:0 14px}
-.tabs{display:flex;gap:8px;position:sticky;top:0;z-index:5;background:var(--bg);padding:14px 0 10px}
-.tab{flex:1;min-height:46px;border-radius:14px;border:1.5px solid var(--b);background:var(--c);color:var(--t);font-weight:700;font-size:15px;cursor:pointer;box-shadow:var(--sh)}
-.tab.on{background:var(--g);border-color:var(--g);color:#fff}
-.card{background:var(--c);border:1px solid var(--b);border-radius:18px;padding:14px;margin-bottom:12px;box-shadow:var(--sh)}
-.top{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
-.em{width:54px;height:54px;flex:none;border-radius:16px;background:var(--g2);display:grid;place-items:center;font-size:28px}
-.nm{font-weight:700;font-size:17px;line-height:1.25}
-.pk{display:inline-block;margin-top:4px;background:var(--g2);color:var(--g);font-size:12px;font-weight:600;border-radius:99px;padding:3px 10px}
-.chips{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:14px 0 12px}
-.chip{min-height:42px;border:1.5px solid var(--b);background:var(--c);color:var(--t);padding:8px 2px;border-radius:12px;font-size:14px;white-space:nowrap;text-align:center;font-weight:600;cursor:pointer}
-.chip.on{background:var(--g);border-color:var(--g);color:#fff}
-.row{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.price{font-size:22px;font-weight:800;color:var(--g)}
-button.add{background:var(--sa);color:#fff;border:0;border-radius:12px;min-height:46px;padding:0 20px;font-size:15px;font-weight:700;cursor:pointer}
-button.add:active,.tab:active,.chip:active{transform:scale(.97)}
-#bar{position:fixed;bottom:0;left:0;right:0;padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));background:linear-gradient(transparent,var(--bg) 40%)}
-#bar button{width:100%;max-width:640px;display:block;margin:auto;background:var(--g);color:#fff;border:0;border-radius:16px;padding:16px;font-size:16px;font-weight:700;cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,.2)}
-#bar button:disabled{background:var(--b);color:var(--m);box-shadow:none}
-#sheet{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9}
-#sheet.open{display:block}
-#panel{position:absolute;bottom:0;left:0;right:0;max-height:92vh;max-height:92dvh;overflow:auto;background:var(--bg);border-radius:22px 22px 0 0;padding:16px;padding-bottom:calc(16px + env(safe-area-inset-bottom,0px));max-width:640px;margin:auto;-webkit-overflow-scrolling:touch}
-.item{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--b);gap:8px}
-.item .pk{background:none;color:var(--m);padding:0;font-weight:500;font-size:13px}
-.step{display:flex;align-items:center;gap:10px}
-.step button{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--b);background:var(--c);color:var(--t);font-size:20px;cursor:pointer}
-input,textarea{width:100%;padding:12px;margin:6px 0;border:1.5px solid var(--b);border-radius:12px;font:inherit;font-size:16px;background:var(--c);color:var(--t)}
-input:focus,textarea:focus{outline:2px solid var(--g);border-color:transparent}
-.tot{font-size:19px;font-weight:800;margin:12px 0}
-.close{float:right;background:var(--c);border:1px solid var(--b);border-radius:50%;width:38px;height:38px;font-size:22px;color:var(--t);cursor:pointer}
-.wa{background:#25d366!important;color:#fff;border:0;border-radius:14px;font-weight:700}
-.note{font-size:12px;color:var(--m);text-align:center;margin:18px 0}
-@media(max-width:380px){.chip{font-size:13px}.nm{font-size:16px}}
-@media(min-width:700px){#panel{border-radius:22px;bottom:auto;top:50%;transform:translateY(-50%)}}
-.pr{font-size:19px;font-weight:800;color:var(--g);white-space:nowrap}
-.pr small{font-size:12px;font-weight:600;color:var(--m);margin-left:1px}
-.inc{display:flex;flex-wrap:wrap;gap:6px;margin:-2px 0 12px}
-.ic{display:inline-flex;align-items:center;gap:6px;background:var(--g2);color:var(--g);border-radius:99px;padding:5px 6px 5px 12px;font-size:13px;font-weight:700}
-.ic button{width:22px;height:22px;border-radius:50%;border:0;background:var(--g);color:#fff;font-size:15px;line-height:1;cursor:pointer;padding:0}
-.card{padding:10px 12px;margin-bottom:8px;border-radius:14px}
-.nm{font-size:16px}.pr{font-size:17px}
-.chips{gap:5px;margin:8px 0}
-.chip{min-height:36px;font-size:13px;border-radius:10px}
-button.add{width:100%;min-height:40px;padding:0 12px;font-size:14px;border-radius:10px}
-.inc{margin:0 0 8px;gap:5px}
-.ic{padding:3px 4px 3px 10px;font-size:12px}
-.ic button{width:20px;height:20px}
-.tabs{padding:10px 0 8px}.tab{min-height:42px}
-.bot{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.left{display:flex;flex-wrap:wrap;align-items:center;gap:6px;min-width:0}
-.sp{font-size:19px;font-weight:800;color:var(--g);margin-right:2px}
-button.add{width:auto;flex:none;min-height:38px;padding:0 18px;font-size:14px}
-header{padding:calc(9px + env(safe-area-inset-top,0px)) 16px 10px;border-radius:0 0 16px 16px}
-header h1{margin:0;font-size:19px;letter-spacing:.3px}
-header p{margin:1px 0 0;font-size:12px}
-.card{padding:8px 10px;margin-bottom:6px}
-.top{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.nmw{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 8px;min-width:0}
-.nm{font-size:15px}.pr{font-size:14px}
-button.add{min-height:34px;padding:0 14px;font-size:13px;white-space:nowrap}
-.chips{margin:7px 0 0;gap:5px}
-.chip{min-height:34px;font-size:13px}
-.inc{margin:7px 0 0}
-.tabs{padding:8px 0 6px}.tab{min-height:40px}
-.nmw{flex-wrap:nowrap;gap:6px}
-.nm{font-size:14px;line-height:1.2}.pr{font-size:13px;white-space:nowrap;flex:none}
-button.add{padding:0 16px;font-size:14px;min-height:34px}
-@media(max-width:340px){.nm{font-size:13px}.pr{font-size:12px}}
-.chips{margin:6px 0}
-.bot{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.left{display:flex;flex-wrap:wrap;align-items:center;gap:6px;min-width:0}
-.sp{font-size:17px;font-weight:800;color:var(--g);margin-right:2px}
-.ic{padding:2px 4px 2px 9px;font-size:12px}
-button.add{min-height:34px;padding:0 20px;font-size:14px}
-.close{float:none;position:absolute;top:12px;right:12px;z-index:2}
-#panel h2{padding-right:48px;min-height:38px;display:flex;align-items:center}
-.item>div:first-child{flex:1;min-width:0}
-.step{flex:none;width:124px;justify-content:space-between}
-.step b{min-width:24px;text-align:center}
-.item{width:100%}
-#mapov{display:none;position:fixed;inset:0;z-index:30;background:var(--bg)}
-#mapov.open{display:block}
-#map{position:absolute;inset:0;z-index:0;isolation:isolate}
-.mtop{position:absolute;top:0;left:0;right:0;z-index:5;padding:calc(10px + env(safe-area-inset-top,0px)) 12px 10px;background:linear-gradient(var(--bg) 70%,transparent)}
-.mbar{display:flex;gap:8px;align-items:center}
-.mbar button{flex:none;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--b);background:var(--c);color:var(--t);font-size:20px;cursor:pointer}
-.mbar input{margin:0;box-shadow:0 2px 10px rgba(0,0,0,.15)}
-#res{background:var(--c);border:1px solid var(--b);border-radius:12px;margin-top:6px;max-height:40vh;overflow:auto;display:none;box-shadow:0 6px 18px rgba(0,0,0,.2)}
-#res div{padding:12px;border-bottom:1px solid var(--b);font-size:14px;cursor:pointer;line-height:1.3}
-#res div:last-child{border:0}
-.pin{position:absolute;left:50%;top:50%;z-index:4;width:36px;height:46px;margin:-46px 0 0 -18px;pointer-events:none;transition:transform .15s}
-.pin.lift{transform:translateY(-10px)}
-.pin:after{content:"";position:absolute;left:50%;bottom:-4px;width:10px;height:4px;margin-left:-5px;border-radius:50%;background:rgba(0,0,0,.35)}
-#locate{position:absolute;right:12px;bottom:calc(168px + env(safe-area-inset-bottom,0px));z-index:5;width:48px;height:48px;border-radius:50%;border:0;background:var(--c);color:var(--g);font-size:22px;box-shadow:0 3px 12px rgba(0,0,0,.3);cursor:pointer}
-.mbot{position:absolute;left:0;right:0;bottom:0;z-index:5;background:var(--bg);border-radius:20px 20px 0 0;padding:14px 14px calc(14px + env(safe-area-inset-bottom,0px));box-shadow:0 -4px 18px rgba(0,0,0,.2)}
-.mbot small{color:var(--m);font-size:12px}
-#mAddr{font-weight:600;font-size:14px;line-height:1.35;margin:4px 0 12px;min-height:38px}
-</style>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#174b35">
+  <title>Bhumija Chakki | Fresh flour, delivered</title>
+  <style>
+    :root{--green:#174b35;--green-2:#236545;--cream:#fffaf0;--paper:#fff;--ink:#18251d;--muted:#66736a;--line:#e8e4d9;--orange:#e88b37;--soft:#eef6ed;--shadow:0 12px 35px rgba(20,59,40,.10)}
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--cream);color:var(--ink);font:15px/1.4 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;padding-bottom:98px}.app{max-width:720px;margin:auto}.hero{color:#fff;background:radial-gradient(circle at 83% 3%,#57965e 0,transparent 28%),linear-gradient(135deg,#123d2c,#236545);padding:calc(18px + env(safe-area-inset-top)) 20px 28px;border-radius:0 0 30px 30px}.brand{display:flex;align-items:center;gap:12px}.logo{width:54px;height:54px;object-fit:contain;background:#fff;border-radius:50%;padding:2px;box-shadow:0 5px 16px rgba(0,0,0,.22)}.brand h1{font-size:20px;margin:0;letter-spacing:.1px}.brand p{margin:2px 0 0;color:#dcecdc;font-size:12px}.hero-content{margin-top:22px}.eyebrow{margin:0 0 5px;text-transform:uppercase;letter-spacing:1.3px;font-size:11px;font-weight:800;color:#d7edcc}.hero h2{max-width:420px;font-size:28px;line-height:1.12;margin:0;letter-spacing:-.8px}.hero-copy{max-width:440px;margin:9px 0 0;color:#e4f0e0}.perks{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.perk{font-size:12px;font-weight:700;border:1px solid rgba(255,255,255,.25);padding:7px 10px;border-radius:99px;background:rgba(255,255,255,.11)}main{padding:18px 16px}.section-title{display:flex;align-items:end;justify-content:space-between;margin:3px 0 12px}.section-title h2{font-size:20px;margin:0;letter-spacing:-.4px}.section-title span{font-size:12px;color:var(--muted)}.tabs{display:flex;gap:9px;overflow:auto;padding-bottom:8px;scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}.tab{flex:none;border:1px solid var(--line);background:var(--paper);border-radius:99px;color:var(--muted);padding:10px 14px;font:inherit;font-weight:750;cursor:pointer}.tab.active{background:var(--green);border-color:var(--green);color:white}.grid{display:grid;gap:12px}.product{background:var(--paper);border:1px solid var(--line);border-radius:19px;padding:14px;box-shadow:0 3px 12px rgba(31,47,34,.04)}.product-head{display:flex;gap:12px;align-items:center}.product-icon{width:45px;height:45px;display:grid;place-items:center;flex:none;background:var(--soft);border-radius:14px;font-size:23px}.product-name{font-weight:800;font-size:16px;line-height:1.2}.product-sub{font-size:12px;color:var(--muted);margin-top:3px}.product-price{margin-left:auto;text-align:right;color:var(--green);font-weight:850;font-size:16px;white-space:nowrap}.product-price small{display:block;color:var(--muted);font-weight:600;font-size:11px}.sizes{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:13px 0}.size{min-height:36px;padding:2px;border:1px solid var(--line);background:var(--paper);border-radius:9px;font:inherit;font-size:12px;font-weight:750;cursor:pointer}.size.active{border-color:var(--green);background:var(--soft);color:var(--green)}.product-foot{display:flex;justify-content:space-between;align-items:center;gap:12px}.selected-price{font-size:19px;color:var(--green);font-weight:850}.add{border:0;background:var(--orange);color:#fff;border-radius:11px;min-height:38px;padding:0 17px;font:inherit;font-weight:800;cursor:pointer;box-shadow:0 5px 12px rgba(232,139,55,.22)}button:active{transform:scale(.97)}.empty-note{text-align:center;color:var(--muted);font-size:13px;margin:20px 0 4px}.cartbar{position:fixed;z-index:10;left:0;right:0;bottom:0;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:linear-gradient(transparent,var(--cream) 27%)}.cartbar button{display:flex;align-items:center;justify-content:space-between;width:min(688px,100%);margin:auto;padding:15px 17px;border:0;border-radius:16px;background:var(--green);color:#fff;font:inherit;font-weight:800;box-shadow:0 12px 28px rgba(20,59,40,.25);cursor:pointer}.cartbar button:disabled{background:#b6beb6;box-shadow:none}.cart-total{font-size:16px}.overlay{position:fixed;z-index:20;inset:0;background:rgba(11,25,17,.46);display:none}.overlay.open{display:block}.sheet{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:min(720px,100%);max-height:88dvh;overflow:auto;background:var(--cream);border-radius:25px 25px 0 0;padding:18px 16px calc(20px + env(safe-area-inset-bottom));box-shadow:0 -8px 28px rgba(0,0,0,.15)}.handle{width:42px;height:4px;border-radius:9px;background:#c8cec8;margin:0 auto 15px}.sheet-head{display:flex;justify-content:space-between;align-items:center}.sheet h2{margin:0;font-size:21px}.close{border:1px solid var(--line);background:var(--paper);height:38px;width:38px;border-radius:50%;font-size:23px;cursor:pointer}.cart-item{display:flex;align-items:center;gap:10px;padding:14px 0;border-bottom:1px solid var(--line)}.cart-item-main{flex:1}.cart-item-name{font-weight:800}.cart-item-meta{font-size:12px;color:var(--muted);margin-top:2px}.qty{display:flex;align-items:center;gap:10px}.qty button{height:31px;width:31px;border:1px solid var(--line);border-radius:9px;background:white;font-size:18px;cursor:pointer}.bill{display:flex;justify-content:space-between;margin:16px 0;font-size:19px;font-weight:850}.primary{width:100%;min-height:50px;border:0;border-radius:14px;background:var(--green);color:white;font:inherit;font-weight:850;font-size:16px;cursor:pointer}.back{width:100%;margin-top:9px;border:0;background:none;color:var(--green);font:inherit;font-weight:800;padding:10px;cursor:pointer}.details{display:none}.details.visible{display:block}.details input,.details textarea{display:block;width:100%;margin:10px 0;border:1px solid var(--line);border-radius:12px;background:white;padding:13px;font:inherit;outline:none}.details input:focus,.details textarea:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(35,101,69,.12)}.location{display:flex;align-items:center;gap:10px;background:var(--soft);border-radius:12px;padding:11px 12px;color:var(--green);font-size:13px;font-weight:700}.location button{margin-left:auto;border:0;background:none;color:var(--green);font:inherit;font-weight:850;cursor:pointer}.whatsapp{margin-top:10px;background:#22a85a}.field-label{display:block;margin-top:13px;font-size:13px;font-weight:800;color:var(--green)}@media(min-width:620px){.grid{grid-template-columns:repeat(2,1fr)}.hero{padding-left:28px;padding-right:28px}main{padding:22px 22px}.cartbar{padding-left:22px;padding-right:22px}}@media(max-width:360px){.sizes{gap:4px}.size{font-size:11px}.hero h2{font-size:25px}}
+  </style>
 </head>
 <body>
-<header><h1>Bhumija Chakki</h1><p>Freshly Milled, Freshly Delivered</p></header>
-<main>
-  <div class="tabs" id="tabs"></div>
-  <div id="list"></div>
-  <p class="note">Pick a pack size, add to cart, and send your order on WhatsApp. 🌾</p>
-</main>
-
-<div id="bar"><button id="viewCart" disabled>Cart is empty</button></div>
-
-<div id="sheet"><div id="panel">
-  <button class="close" id="closeSheet">×</button>
-  <div id="step1">
-    <h2 style="margin:0 0 8px">Review your items</h2>
-    <div id="items"></div>
-    <div class="tot row"><span>Total</span><span id="total"></span></div>
-    <button class="add" id="toDetails" style="width:100%;padding:14px;min-height:48px;font-size:16px">Confirm items &amp; continue</button>
+  <div class="app">
+    <header class="hero">
+      <div class="brand"><img class="logo" src="Transparent%20Logo%20(2).png" alt="Bhumija Chakki logo"><div><h1>Bhumija Chakki</h1><p>From our chakki to your home</p></div></div>
+      <div class="hero-content"><p class="eyebrow">Freshly milled, freshly delivered</p><h2>Better everyday food starts with better flour.</h2><p class="hero-copy">Choose your staples, pick a pack size, and place your order in a few taps.</p></div>
+      <div class="perks"><span class="perk">🌾 Freshly milled</span><span class="perk">🛵 Local delivery</span><span class="perk">💬 Easy WhatsApp order</span></div>
+    </header>
+    <main>
+      <div class="section-title"><h2>Shop our staples</h2><span id="categoryCount"></span></div>
+      <div class="tabs" id="tabs"></div>
+      <div class="grid" id="products"></div>
+      <p class="empty-note">Select a size, add your favourites, then check out securely through WhatsApp.</p>
+    </main>
   </div>
-  <div id="step2" style="display:none">
-    <h2 style="margin:0 0 4px">Delivery details</h2>
-    <div class="note" id="sum" style="margin:0 0 8px;text-align:left"></div>
-    <input id="name" placeholder="Your name">
-    <input id="phone" type="tel" placeholder="Phone number">
-    <textarea id="addr" rows="2" placeholder="House / flat no., street, landmark"></textarea>
-    <button class="chip" id="locBtn" type="button" style="width:100%;margin:6px 0;padding:12px">📍 Pick delivery location on map</button>
-    <div id="locStat" class="note" style="margin-bottom:6px">Search or move the pin to your exact spot.</div>
-    <textarea id="notes" rows="1" placeholder="Notes (optional)"></textarea>
-    <button class="add wa" id="send" style="width:100%;padding:14px;min-height:48px;margin-top:8px;font-size:16px">Order on WhatsApp</button>
-    <button class="chip" id="backBtn" style="width:100%;margin-top:8px">← Back to items</button>
-  </div>
-</div></div>
-
-<div id="mapov">
-  <div id="map"></div>
-  <div class="mtop">
-    <div class="mbar"><button id="mBack" aria-label="Back">←</button><input id="mSearch" type="search" placeholder="Search area, street or landmark" autocomplete="off"></div>
-    <div id="res"></div>
-  </div>
-  <svg class="pin" id="pin" viewBox="0 0 36 46"><path d="M18 45C18 45 3 28 3 16a15 15 0 0 1 30 0c0 12-15 29-15 29z" fill="#2f5d3a" stroke="#fff" stroke-width="2"/><circle cx="18" cy="16" r="6" fill="#fff"/></svg>
-  <button id="locate" aria-label="Use my current location">◎</button>
-  <div class="mbot"><small>Delivery location</small><div id="mAddr">Move the map to place the pin</div>
-    <button class="add" id="mOk" style="width:100%;min-height:48px;font-size:16px">Confirm location</button></div>
-</div>
-
-<script>
-/* ====== EDIT THIS SECTION ====== */
-const SHOP_WHATSAPP = "916360683923"; // country code + number, no + or spaces
-const PRODUCTS = [ // price = rupees per kg (Atta & Flour) or per 100 g (Masala)
-  {id:"a0",cat:"Atta & Flour",name:"Sharbati Wheat Atta",price:65,emoji:"🌾"},
-  {id:"a1",cat:"Atta & Flour",name:"Multigrain Atta",price:100,emoji:"🥣"},
-  {id:"a2",cat:"Atta & Flour",name:"Khapli Atta",price:150,emoji:"🌾"},
-  {id:"a3",cat:"Atta & Flour",name:"Jowar Atta",price:75,emoji:"🌾"},
-  {id:"a4",cat:"Atta & Flour",name:"Ragi Atta",price:70,emoji:"🌱"},
-  {id:"a5",cat:"Atta & Flour",name:"Bajra Atta",price:65,emoji:"🌾"},
-  {id:"a6",cat:"Atta & Flour",name:"Besan",price:130,emoji:"🟡"},
-  {id:"a7",cat:"Atta & Flour",name:"Makka Atta",price:90,emoji:"🌽"},
-  {id:"a8",cat:"Atta & Flour",name:"Rice Atta",price:60,emoji:"🍚"},
-  {id:"a9",cat:"Atta & Flour",name:"Sattu",price:200,emoji:"🥛"},
-  {id:"m0",cat:"Masala",name:"Chilli Spicy",price:60,emoji:"🌶️"},
-  {id:"m1",cat:"Masala",name:"Chilli Medium",price:60,emoji:"🌶️"},
-  {id:"m2",cat:"Masala",name:"Chilli Kashmiri",price:100,emoji:"🌶️"},
-  {id:"m3",cat:"Masala",name:"Dania Powder",price:50,emoji:"🌿"},
-  {id:"m4",cat:"Masala",name:"Sambar Masala",price:60,emoji:"🍲"},
-  {id:"m5",cat:"Masala",name:"Garam Masala",price:120,emoji:"🧂"},
-  {id:"m6",cat:"Masala",name:"Turmeric / Haldi",price:50,emoji:"🟠"}
-];
-const CATS = ["Atta & Flour","Masala"];
-const SIZES = {"Atta & Flour":[0.5,1,2,3,5], "Masala":[50,100,200,250,500]}; // kg for flour, grams for masala
-/* =============================== */
-
-const isM = p => p.cat==="Masala";
-const label = (p,s) => isM(p) ? s+" g" : (s<1 ? (s*1000)+" g" : s+" kg");
-const price = (p,s) => Math.round(isM(p) ? p.price*s/100 : p.price*s);
-const unit = p => isM(p) ? "100 g" : "kg";
-let cat = CATS[0];
-let loc = null;
-const sel = {}, cart = {};
-PRODUCTS.forEach(p => sel[p.id] = SIZES[p.cat][isM(p)?1:1]);
-const $ = id => document.getElementById(id);
-
-function renderList(){
-  $("tabs").innerHTML = CATS.map(c=>`<button class="tab ${c===cat?'on':''}" onclick="cat='${c}';renderList()">${c}</button>`).join("");
-  $("list").innerHTML = PRODUCTS.filter(p=>p.cat===cat).map(p => `
-    <div class="card">
-      <div class="top"><div class="nmw"><span class="nm">${p.name}</span><span class="pr">₹${p.price}<small>/${isM(p)?"100 g":"kg"}</small></span></div></div>
-      <div class="chips">${SIZES[p.cat].map(s=>`<button class="chip ${sel[p.id]===s?'on':''}" onclick="pick('${p.id}',${s})">${label(p,s)}</button>`).join("")}</div>
-      <div class="bot"><div class="left"><span class="sp">₹${price(p,sel[p.id])}</span>${inCart(p)}</div>
-        <button class="add" onclick="addToCart('${p.id}')">+ Add</button></div>
-    </div>`).join("");
-}
-function inCart(p){
-  const ks = Object.keys(cart).filter(k=>k.split("|")[0]===p.id);
-  if(!ks.length) return "";
-  return `${ks.map(k=>{const sz=parseFloat(k.split("|")[1]);
-    return `<span class="ic">✓ ${label(p,sz)} × ${cart[k]}<button aria-label="Remove one" onclick="change('${k}',-1)">×</button></span>`}).join("")}`;
-}
-function pick(id,s){sel[id]=s;renderList();}
-function addToCart(id){
-  const k = id+"|"+sel[id];
-  cart[k] = (cart[k]||0)+1;
-  updateBar(); renderList();
-}
-function change(k,d){
-  cart[k]+=d; if(cart[k]<=0) delete cart[k];
-  updateBar(); renderCart(); renderList();
-  if(!Object.keys(cart).length) $("sheet").classList.remove("open");
-}
-function lines(){
-  return Object.entries(cart).map(([k,q])=>{
-    const [id,s]=k.split("|"); const p=PRODUCTS.find(x=>x.id===id); const sz=parseFloat(s);
-    return {k,p,sz,q,amt:price(p,sz)*q};
-  });
-}
-const total = () => lines().reduce((a,l)=>a+l.amt,0);
-function updateBar(){
-  const n = Object.values(cart).reduce((a,b)=>a+b,0);
-  const b = $("viewCart");
-  b.disabled = !n;
-  b.textContent = n ? `View cart (${n} item${n>1?'s':''}) · ₹${total()}` : "Cart is empty";
-}
-function renderCart(){
-  $("items").innerHTML = lines().map(l=>`
-    <div class="item">
-      <div><b>${l.p.name}</b><br><span class="pk">${label(l.p,l.sz)} × ${l.q} = ₹${l.amt}</span></div>
-      <div class="step"><button onclick="change('${l.k}',-1)">−</button><b>${l.q}</b><button onclick="change('${l.k}',1)">+</button></div>
-    </div>`).join("");
-  $("total").textContent = "₹"+total();
-}
-function showStep(n){$("step1").style.display=n===1?"block":"none";$("step2").style.display=n===2?"block":"none";$("panel").scrollTop=0;}
-$("viewCart").onclick = () => {renderCart(); showStep(1); $("sheet").classList.add("open");};
-$("toDetails").onclick = () => {
-  const n=Object.values(cart).reduce((a,b)=>a+b,0);
-  $("sum").textContent = n+" item"+(n>1?"s":"")+" · Total ₹"+total();
-  showStep(2);
-};
-$("backBtn").onclick = () => {renderCart(); showStep(1);};
-$("closeSheet").onclick = () => $("sheet").classList.remove("open");
-let map=null, cur=null, rq=0, tmr=null, stmr=null, autoAddr="";
-const CITY=[12.9716,77.5946];
-function short(a){return a?a.split(",").slice(0,3).join(","):"";}
-function openMap(){
-  if(typeof L==="undefined"){ // fallback: no map library
-    const st=$("locStat"); st.textContent="Getting your location…";
-    navigator.geolocation&&navigator.geolocation.getCurrentPosition(p=>{loc={lat:p.coords.latitude.toFixed(6),lng:p.coords.longitude.toFixed(6)};st.textContent="✅ Location captured";},()=>{st.textContent="Could not get location. Please type a clear address.";},{enableHighAccuracy:true,timeout:15000});
-    return;
-  }
-  $("mapov").classList.add("open");
-  if(!map){
-    map=L.map("map",{zoomControl:false,attributionControl:true}).setView(loc?[loc.lat,loc.lng]:CITY,loc?17:12);
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap"}).addTo(map);
-    map.on("movestart",()=>$("pin").classList.add("lift"));
-    map.on("moveend",()=>{$("pin").classList.remove("lift");clearTimeout(tmr);tmr=setTimeout(reverse,350);});
-    if(!loc) locateMe(true);
-  } else if(loc){map.setView([loc.lat,loc.lng],17);}
-  setTimeout(()=>{map.invalidateSize();reverse();},60);
-}
-async function reverse(){
-  const c=map.getCenter(), id=++rq; $("mAddr").textContent="Finding address…";
-  cur={lat:c.lat.toFixed(6),lng:c.lng.toFixed(6),addr:""};
-  try{
-    const r=await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${c.lat}&lon=${c.lng}&zoom=18`);
-    const j=await r.json(); if(id!==rq) return;
-    cur.addr=j.display_name||""; $("mAddr").textContent=cur.addr||"Pinned location";
-  }catch(e){ if(id===rq) $("mAddr").textContent="Pinned location ("+cur.lat+", "+cur.lng+")"; }
-}
-function locateMe(quiet){
-  if(!navigator.geolocation){ if(!quiet) alert("Location is not supported on this device."); return; }
-  navigator.geolocation.getCurrentPosition(p=>map.setView([p.coords.latitude,p.coords.longitude],17),
-    ()=>{ if(!quiet) alert("Could not get your location. Please allow location access, or search for your area."); },
-    {enableHighAccuracy:true,timeout:15000});
-}
-async function search(q){
-  const box=$("res");
-  if(q.length<3){box.style.display="none";return;}
-  try{
-    const r=await fetch(`https://nominatim.openstreetmap.org/search?format=jsonv2&limit=6&countrycodes=in&q=${encodeURIComponent(q)}`);
-    const j=await r.json();
-    box.innerHTML=j.length?"":'<div>No results found</div>';
-    j.forEach(x=>{const d=document.createElement("div");d.textContent=x.display_name;
-      d.onclick=()=>{map.setView([x.lat,x.lon],17);box.style.display="none";$("mSearch").blur();};box.appendChild(d);});
-    box.style.display="block";
-  }catch(e){box.innerHTML="<div>Search unavailable. Move the map instead.</div>";box.style.display="block";}
-}
-$("locBtn").onclick = openMap;
-$("mBack").onclick = () => $("mapov").classList.remove("open");
-$("locate").onclick = () => locateMe(false);
-$("mSearch").oninput = e => {clearTimeout(stmr);const v=e.target.value.trim();stmr=setTimeout(()=>search(v),700);};
-$("mOk").onclick = () => {
-  if(!cur) return;
-  loc={lat:cur.lat,lng:cur.lng};
-  const a=$("addr");
-  if(cur.addr && (!a.value.trim() || a.value===autoAddr)){a.value=cur.addr;autoAddr=cur.addr;}
-  $("locStat").textContent="✅ Pinned: "+short(cur.addr)+" — add your house/flat no. in the address";
-  $("mapov").classList.remove("open");
-};
-$("send").onclick = () => {
-  const name=$("name").value.trim(), phone=$("phone").value.trim(), addr=$("addr").value.trim();
-  if(!name||!phone||!addr){alert("Please enter your name, phone and address.");return;}
-  if(!loc && !confirm("You haven't shared your location. Send the order without it?")) return;
-  let m = "*New Order – Bhumija Chakki*\n\n";
-  lines().forEach(l => m += `• ${l.p.name} ${label(l.p,l.sz)} × ${l.q} = ₹${l.amt}\n`);
-  m += `\n*Total: ₹${total()}*\n\nName: ${name}\nPhone: ${phone}\nAddress: ${addr}`;
-  if(loc) m += `\nLocation: https://maps.google.com/?q=${loc.lat},${loc.lng}`;
-  const notes=$("notes").value.trim(); if(notes) m += `\nNotes: ${notes}`;
-  window.open("https://wa.me/"+SHOP_WHATSAPP+"?text="+encodeURIComponent(m),"_blank");
-};
-renderList();
-</script>
+  <div class="cartbar"><button id="cartButton" disabled><span id="cartLabel">Your cart is empty</span><span class="cart-total" id="cartTotal"></span></button></div>
+  <div class="overlay" id="overlay"><section class="sheet"><div class="handle"></div><div class="sheet-head"><h2 id="sheetTitle">Your cart</h2><button class="close" id="close" aria-label="Close">×</button></div><div id="cartStep"><div id="cartItems"></div><div class="bill"><span>Total</span><span id="billTotal">₹0</span></div><button class="primary" id="continue">Continue to delivery details</button></div><form class="details" id="detailsStep"><p style="color:var(--muted);margin:7px 0 12px">We’ll send your item list and details directly to Bhumija Chakki.</p><label class="field-label" for="name">Your name</label><input id="name" required placeholder="Enter your name"><label class="field-label" for="phone">Phone number</label><input id="phone" required type="tel" inputmode="numeric" placeholder="Enter your phone number"><label class="field-label" for="address">Delivery address</label><textarea id="address" required rows="3" placeholder="House / flat no., street and landmark"></textarea><div class="location"><span id="locationStatus">📍 Add your precise location (optional)</span><button type="button" id="locationButton">Use location</button></div><label class="field-label" for="notes">Order notes <span style="font-weight:500;color:var(--muted)">(optional)</span></label><textarea id="notes" rows="2" placeholder="Any delivery instructions?"></textarea><button class="primary whatsapp" type="submit">Send order on WhatsApp</button><button class="back" type="button" id="back">← Review cart</button></form></section></div>
+  <script>
+    const SHOP_WHATSAPP='916360683923';
+    const products=[
+      ['a0','Atta & Flour','Sharbati Wheat Atta',65,'🌾'],['a1','Atta & Flour','Multigrain Atta',100,'🥣'],['a2','Atta & Flour','Khapli Atta',150,'🌾'],['a3','Atta & Flour','Jowar Atta',75,'🌾'],['a4','Atta & Flour','Ragi Atta',70,'🌱'],['a5','Atta & Flour','Bajra Atta',65,'🌾'],['a6','Atta & Flour','Besan',130,'🟡'],['a7','Atta & Flour','Makka Atta',90,'🌽'],['a8','Atta & Flour','Rice Atta',60,'🍚'],['a9','Atta & Flour','Sattu',200,'🥛'],
+      ['m0','Masala','Chilli Spicy',60,'🌶️'],['m1','Masala','Chilli Medium',60,'🌶️'],['m2','Masala','Chilli Kashmiri',100,'🌶️'],['m3','Masala','Dania Powder',50,'🌿'],['m4','Masala','Sambar Masala',60,'🍲'],['m5','Masala','Garam Masala',120,'🧂'],['m6','Masala','Turmeric / Haldi',50,'🟠']
+    ].map(([id,cat,name,price,icon])=>({id,cat,name,price,icon}));
+    const sizes={'Atta & Flour':[.5,1,2,3,5],Masala:[50,100,200,250,500]}, cats=Object.keys(sizes), cart={}, choice={}; let active=cats[0], locationData=null;
+    const el=id=>document.getElementById(id), isMasala=p=>p.cat==='Masala', formatSize=(p,s)=>isMasala(p)?`${s} g`:(s<1?`${s*1000} g`:`${s} kg`), amount=(p,s)=>Math.round(isMasala(p)?p.price*s/100:p.price*s), unit=p=>isMasala(p)?'100 g':'kg';
+    products.forEach(p=>choice[p.id]=sizes[p.cat][isMasala(p)?1:1]);
+    function render(){
+      el('tabs').innerHTML=cats.map(c=>`<button class="tab ${c===active?'active':''}" data-cat="${c}">${c}</button>`).join('');
+      el('categoryCount').textContent=`${products.filter(p=>p.cat===active).length} products`;
+      el('products').innerHTML=products.filter(p=>p.cat===active).map(p=>`<article class="product"><div class="product-head"><div class="product-icon">${p.icon}</div><div><div class="product-name">${p.name}</div><div class="product-sub">Freshly milled • ₹${p.price}/${unit(p)}</div></div><div class="product-price">₹${p.price}<small>per ${unit(p)}</small></div></div><div class="sizes">${sizes[p.cat].map(s=>`<button class="size ${choice[p.id]===s?'active':''}" data-size="${s}" data-id="${p.id}">${formatSize(p,s)}</button>`).join('')}</div><div class="product-foot"><span class="selected-price">₹${amount(p,choice[p.id])}</span><button class="add" data-add="${p.id}">+ Add</button></div></article>`).join('');
+      el('tabs').querySelectorAll('[data-cat]').forEach(b=>b.onclick=()=>{active=b.dataset.cat;render()});
+      el('products').querySelectorAll('[data-size]').forEach(b=>b.onclick=()=>{choice[b.dataset.id]=Number(b.dataset.size);render()});
+      el('products').querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>add(b.dataset.add)); updateBar();
+    }
+    function add(id){const key=`${id}|${choice[id]}`;cart[key]=(cart[key]||0)+1;updateBar();}
+    function cartLines(){return Object.entries(cart).map(([key,qty])=>{const [id,size]=key.split('|'),p=products.find(x=>x.id===id),s=Number(size);return{key,p,s,qty,total:amount(p,s)*qty}})}
+    function cartTotal(){return cartLines().reduce((sum,line)=>sum+line.total,0)}
+    function updateBar(){const count=Object.values(cart).reduce((a,b)=>a+b,0), button=el('cartButton');button.disabled=!count;el('cartLabel').textContent=count?`${count} item${count>1?'s':''} in your cart`:'Your cart is empty';el('cartTotal').textContent=count?`View cart · ₹${cartTotal()}`:''}
+    function renderCart(){const lines=cartLines();el('cartItems').innerHTML=lines.map(l=>`<div class="cart-item"><div class="product-icon">${l.p.icon}</div><div class="cart-item-main"><div class="cart-item-name">${l.p.name}</div><div class="cart-item-meta">${formatSize(l.p,l.s)} · ₹${amount(l.p,l.s)} each</div></div><div class="qty"><button data-change="${l.key}" data-delta="-1">−</button><b>${l.qty}</b><button data-change="${l.key}" data-delta="1">+</button></div></div>`).join('');el('billTotal').textContent=`₹${cartTotal()}`;el('cartItems').querySelectorAll('[data-change]').forEach(b=>b.onclick=()=>{const key=b.dataset.change;cart[key]+=Number(b.dataset.delta);if(cart[key]<1)delete cart[key];if(!Object.keys(cart).length)closeSheet();renderCart();updateBar();});}
+    function openCart(){renderCart();el('overlay').classList.add('open');showCart();} function closeSheet(){el('overlay').classList.remove('open')} function showCart(){el('sheetTitle').textContent='Your cart';el('cartStep').style.display='block';el('detailsStep').classList.remove('visible')} function showDetails(){el('sheetTitle').textContent='Delivery details';el('cartStep').style.display='none';el('detailsStep').classList.add('visible')}
+    el('cartButton').onclick=openCart;el('close').onclick=closeSheet;el('overlay').onclick=e=>{if(e.target===el('overlay'))closeSheet()};el('continue').onclick=showDetails;el('back').onclick=showCart;
+    el('locationButton').onclick=()=>{
+      if(!navigator.geolocation){el('locationStatus').textContent='Location is not supported in this browser.';return}
+      el('locationStatus').textContent='📍 Getting your location…';
+      navigator.geolocation.getCurrentPosition(
+        position=>{locationData={lat:position.coords.latitude.toFixed(6),lng:position.coords.longitude.toFixed(6)};el('locationStatus').textContent='✓ Location added to your order';},
+        ()=>{el('locationStatus').textContent='Could not access location. You can still place your order.';},
+        {enableHighAccuracy:true,timeout:12000}
+      );
+    };
+    el('detailsStep').onsubmit=e=>{e.preventDefault();const name=el('name').value.trim(),phone=el('phone').value.trim(),address=el('address').value.trim(),notes=el('notes').value.trim();let msg='*New Order – Bhumija Chakki*\n\n';cartLines().forEach(l=>msg+=`• ${l.p.name} — ${formatSize(l.p,l.s)} × ${l.qty} = ₹${l.total}\n`);msg+=`\n*Total: ₹${cartTotal()}*\n\nName: ${name}\nPhone: ${phone}\nDelivery address: ${address}`;if(locationData)msg+=`\nLocation: https://maps.google.com/?q=${locationData.lat},${locationData.lng}`;if(notes)msg+=`\nNotes: ${notes}`;window.open(`https://wa.me/${SHOP_WHATSAPP}?text=${encodeURIComponent(msg)}`,'_blank','noopener')};
+    render();
+  </script>
 </body>
 </html>
