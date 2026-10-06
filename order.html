@@ -97,7 +97,26 @@ button.add{min-height:34px;padding:0 20px;font-size:14px}
 .step{flex:none;width:124px;justify-content:space-between}
 .step b{min-width:24px;text-align:center}
 .item{width:100%}
+#mapov{display:none;position:fixed;inset:0;z-index:30;background:var(--bg)}
+#mapov.open{display:block}
+#map{position:absolute;inset:0;z-index:0;isolation:isolate}
+.mtop{position:absolute;top:0;left:0;right:0;z-index:5;padding:calc(10px + env(safe-area-inset-top,0px)) 12px 10px;background:linear-gradient(var(--bg) 70%,transparent)}
+.mbar{display:flex;gap:8px;align-items:center}
+.mbar button{flex:none;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--b);background:var(--c);color:var(--t);font-size:20px;cursor:pointer}
+.mbar input{margin:0;box-shadow:0 2px 10px rgba(0,0,0,.15)}
+#res{background:var(--c);border:1px solid var(--b);border-radius:12px;margin-top:6px;max-height:40vh;overflow:auto;display:none;box-shadow:0 6px 18px rgba(0,0,0,.2)}
+#res div{padding:12px;border-bottom:1px solid var(--b);font-size:14px;cursor:pointer;line-height:1.3}
+#res div:last-child{border:0}
+.pin{position:absolute;left:50%;top:50%;z-index:4;width:36px;height:46px;margin:-46px 0 0 -18px;pointer-events:none;transition:transform .15s}
+.pin.lift{transform:translateY(-10px)}
+.pin:after{content:"";position:absolute;left:50%;bottom:-4px;width:10px;height:4px;margin-left:-5px;border-radius:50%;background:rgba(0,0,0,.35)}
+#locate{position:absolute;right:12px;bottom:calc(168px + env(safe-area-inset-bottom,0px));z-index:5;width:48px;height:48px;border-radius:50%;border:0;background:var(--c);color:var(--g);font-size:22px;box-shadow:0 3px 12px rgba(0,0,0,.3);cursor:pointer}
+.mbot{position:absolute;left:0;right:0;bottom:0;z-index:5;background:var(--bg);border-radius:20px 20px 0 0;padding:14px 14px calc(14px + env(safe-area-inset-bottom,0px));box-shadow:0 -4px 18px rgba(0,0,0,.2)}
+.mbot small{color:var(--m);font-size:12px}
+#mAddr{font-weight:600;font-size:14px;line-height:1.35;margin:4px 0 12px;min-height:38px}
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 </head>
 <body>
 <header><h1>Bhumija Chakki</h1><p>Freshly Milled, Freshly Delivered</p></header>
@@ -122,14 +141,26 @@ button.add{min-height:34px;padding:0 20px;font-size:14px}
     <div class="note" id="sum" style="margin:0 0 8px;text-align:left"></div>
     <input id="name" placeholder="Your name">
     <input id="phone" type="tel" placeholder="Phone number">
-    <textarea id="addr" rows="2" placeholder="Delivery address"></textarea>
-    <button class="chip" id="locBtn" type="button" style="width:100%;margin:6px 0;padding:12px">📍 Share my delivery location</button>
-    <div id="locStat" class="note" style="margin-bottom:6px">Helps us find your doorstep quickly.</div>
+    <textarea id="addr" rows="2" placeholder="House / flat no., street, landmark"></textarea>
+    <button class="chip" id="locBtn" type="button" style="width:100%;margin:6px 0;padding:12px">📍 Pick delivery location on map</button>
+    <div id="locStat" class="note" style="margin-bottom:6px">Search or move the pin to your exact spot.</div>
     <textarea id="notes" rows="1" placeholder="Notes (optional)"></textarea>
     <button class="add wa" id="send" style="width:100%;padding:14px;min-height:48px;margin-top:8px;font-size:16px">Order on WhatsApp</button>
     <button class="chip" id="backBtn" style="width:100%;margin-top:8px">← Back to items</button>
   </div>
 </div></div>
+
+<div id="mapov">
+  <div id="map"></div>
+  <div class="mtop">
+    <div class="mbar"><button id="mBack" aria-label="Back">←</button><input id="mSearch" type="search" placeholder="Search area, street or landmark" autocomplete="off"></div>
+    <div id="res"></div>
+  </div>
+  <svg class="pin" id="pin" viewBox="0 0 36 46"><path d="M18 45C18 45 3 28 3 16a15 15 0 0 1 30 0c0 12-15 29-15 29z" fill="#2f5d3a" stroke="#fff" stroke-width="2"/><circle cx="18" cy="16" r="6" fill="#fff"/></svg>
+  <button id="locate" aria-label="Use my current location">◎</button>
+  <div class="mbot"><small>Delivery location</small><div id="mAddr">Move the map to place the pin</div>
+    <button class="add" id="mOk" style="width:100%;min-height:48px;font-size:16px">Confirm location</button></div>
+</div>
 
 <script>
 /* ====== EDIT THIS SECTION ====== */
@@ -224,17 +255,63 @@ $("toDetails").onclick = () => {
 };
 $("backBtn").onclick = () => {renderCart(); showStep(1);};
 $("closeSheet").onclick = () => $("sheet").classList.remove("open");
-$("locBtn").onclick = () => {
-  const st = $("locStat");
-  if(!navigator.geolocation){st.textContent="Location not supported on this device.";return;}
-  st.textContent="Getting your location…";
-  navigator.geolocation.getCurrentPosition(pos=>{
-    loc = {lat:pos.coords.latitude.toFixed(6), lng:pos.coords.longitude.toFixed(6)};
-    st.textContent="✅ Location captured";
-    $("locBtn").classList.add("on");
-  }, ()=>{
-    st.textContent="Could not get location. Please allow location access, or type a clear address with a landmark.";
-  }, {enableHighAccuracy:true, timeout:15000});
+let map=null, cur=null, rq=0, tmr=null, stmr=null, autoAddr="";
+const CITY=[12.9716,77.5946];
+function short(a){return a?a.split(",").slice(0,3).join(","):"";}
+function openMap(){
+  if(typeof L==="undefined"){ // fallback: no map library
+    const st=$("locStat"); st.textContent="Getting your location…";
+    navigator.geolocation&&navigator.geolocation.getCurrentPosition(p=>{loc={lat:p.coords.latitude.toFixed(6),lng:p.coords.longitude.toFixed(6)};st.textContent="✅ Location captured";},()=>{st.textContent="Could not get location. Please type a clear address.";},{enableHighAccuracy:true,timeout:15000});
+    return;
+  }
+  $("mapov").classList.add("open");
+  if(!map){
+    map=L.map("map",{zoomControl:false,attributionControl:true}).setView(loc?[loc.lat,loc.lng]:CITY,loc?17:12);
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap"}).addTo(map);
+    map.on("movestart",()=>$("pin").classList.add("lift"));
+    map.on("moveend",()=>{$("pin").classList.remove("lift");clearTimeout(tmr);tmr=setTimeout(reverse,350);});
+    if(!loc) locateMe(true);
+  } else if(loc){map.setView([loc.lat,loc.lng],17);}
+  setTimeout(()=>{map.invalidateSize();reverse();},60);
+}
+async function reverse(){
+  const c=map.getCenter(), id=++rq; $("mAddr").textContent="Finding address…";
+  cur={lat:c.lat.toFixed(6),lng:c.lng.toFixed(6),addr:""};
+  try{
+    const r=await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${c.lat}&lon=${c.lng}&zoom=18`);
+    const j=await r.json(); if(id!==rq) return;
+    cur.addr=j.display_name||""; $("mAddr").textContent=cur.addr||"Pinned location";
+  }catch(e){ if(id===rq) $("mAddr").textContent="Pinned location ("+cur.lat+", "+cur.lng+")"; }
+}
+function locateMe(quiet){
+  if(!navigator.geolocation){ if(!quiet) alert("Location is not supported on this device."); return; }
+  navigator.geolocation.getCurrentPosition(p=>map.setView([p.coords.latitude,p.coords.longitude],17),
+    ()=>{ if(!quiet) alert("Could not get your location. Please allow location access, or search for your area."); },
+    {enableHighAccuracy:true,timeout:15000});
+}
+async function search(q){
+  const box=$("res");
+  if(q.length<3){box.style.display="none";return;}
+  try{
+    const r=await fetch(`https://nominatim.openstreetmap.org/search?format=jsonv2&limit=6&countrycodes=in&q=${encodeURIComponent(q)}`);
+    const j=await r.json();
+    box.innerHTML=j.length?"":'<div>No results found</div>';
+    j.forEach(x=>{const d=document.createElement("div");d.textContent=x.display_name;
+      d.onclick=()=>{map.setView([x.lat,x.lon],17);box.style.display="none";$("mSearch").blur();};box.appendChild(d);});
+    box.style.display="block";
+  }catch(e){box.innerHTML="<div>Search unavailable. Move the map instead.</div>";box.style.display="block";}
+}
+$("locBtn").onclick = openMap;
+$("mBack").onclick = () => $("mapov").classList.remove("open");
+$("locate").onclick = () => locateMe(false);
+$("mSearch").oninput = e => {clearTimeout(stmr);const v=e.target.value.trim();stmr=setTimeout(()=>search(v),700);};
+$("mOk").onclick = () => {
+  if(!cur) return;
+  loc={lat:cur.lat,lng:cur.lng};
+  const a=$("addr");
+  if(cur.addr && (!a.value.trim() || a.value===autoAddr)){a.value=cur.addr;autoAddr=cur.addr;}
+  $("locStat").textContent="✅ Pinned: "+short(cur.addr)+" — add your house/flat no. in the address";
+  $("mapov").classList.remove("open");
 };
 $("send").onclick = () => {
   const name=$("name").value.trim(), phone=$("phone").value.trim(), addr=$("addr").value.trim();
